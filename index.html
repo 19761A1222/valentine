@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            color: #e91e63;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header p {
+            color: #555;
+            font-size: 1.2em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            color: #e91e63;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float 15s infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="floating-heart" style="left: 20%; animation-delay: 2s;">💕</div>
+        <div class="floating-heart" style="left: 30%; animation-delay: 4s;">💖</div>
+        <div class="floating-heart" style="left: 40%; animation-delay: 1s;">💗</div>
+        <div class="floating-heart" style="left: 50%; animation-delay: 3s;">💝</div>
+        <div class="floating-heart" style="left: 60%; animation-delay: 5s;">❤️</div>
+        <div class="floating-heart" style="left: 70%; animation-delay: 2.5s;">💕</div>
+        <div class="floating-heart" style="left: 80%; animation-delay: 4.5s;">💖</div>
+        <div class="floating-heart" style="left: 90%; animation-delay: 1.5s;">💗</div>
+    </div>
+    
+    <div class="header">
+        <h1>💖 Our Love Story 💖</h1>
+        <p>A special place just for us ✨</p>
+    </div>
+    
+    <div class="container">
+        <div class="grid">
+            <a href="question.html" class="card">
+                <div class="card-icon">💕</div>
+                <h2>The Question</h2>
+                <p>Will you be my Valentine? Let's find out! 😊</p>
+            </a>
+            
+            <a href="memories.html" class="card">
+                <div class="card-icon">📸</div>
+                <h2>Our Memories</h2>
+                <p>All our special moments together 💫</p>
+            </a>
+            
+            <a href="quiz.html" class="card">
+                <div class="card-icon">🎮</div>
+                <h2>Love Quiz</h2>
+                <p>How well do you know us? Take the quiz!</p>
+            </a>
+            
+            <a href="reasons.html" class="card">
+                <div class="card-icon">💝</div>
+                <h2>Why I Love You</h2>
+                <p>Click to reveal all the reasons! 💗</p>
+            </a>
+            
+            <a href="timeline.html" class="card">
+                <div class="card-icon">📅</div>
+                <h2>Our Timeline</h2>
+                <p>The story of us from day one ❤️</p>
+            </a>
+            
+            <a href="puzzle.html" class="card">
+                <div class="card-icon">🧩</div>
+                <h2>Memory Match</h2>
+                <p>Match our special moments! A fun game 🎯</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

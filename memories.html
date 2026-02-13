@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories 📸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #e91e63;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: white;
+            font-size: 1.3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        
+        .memory-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .memory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .memory-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .memory-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .upload-placeholder {
+            color: #bdbdbd;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .upload-placeholder p {
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #999;
+        }
+        
+        .memory-content {
+            padding: 25px;
+        }
+        
+        .memory-content h3 {
+            color: #e91e63;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .memory-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+        
+        .memory-date {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .instructions {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            border-left: 5px solid #e91e63;
+        }
+        
+        .instructions h2 {
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 2;
+            color: #555;
+        }
+        
+        .instructions code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #e91e63;
+        }
+        
+        /* Lightbox for viewing images */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-btn">🏠 Home</a>
+    
+    <div class="header">
+        <h1>📸 Our Beautiful Memories 📸</h1>
+        <p>Every moment with you is special ✨</p>
+    </div>
+    
+    <div class="instructions">
+        <h2>💡 How to Add Your Photos</h2>
+        <ol>
+            <li>Create a folder called <code>images</code> in your GitHub repository</li>
+            <li>Upload your photos to the <code>images</code> folder (name them like photo1.jpg, photo2.jpg, etc.)</li>
+            <li>Edit this HTML file and replace <code>images/photo1.jpg</code> with your actual photo filenames</li>
+            <li>Update the titles, descriptions, and dates to match your memories!</li>
+        </ol>
+    </div>
+    
+    <div class="gallery">
+        <!-- Memory Card 1 - EDIT THIS -->
+        <div class="memory-card" onclick="openLightbox('images/photo1.jpg')">
+            <div class="memory-image">
+                <!-- Replace 'images/photo1.jpg' with your photo path -->
+                <!-- <img src="images/photo1.jpg" alt="Our first date"> -->
+                <div class="upload-placeholder">
+                    📷
+                    <p>Upload your photo here!</p>
+                </div>
+            </div>
+            <div class="memory-content">
+                <h3>Our First Date</h3>
+                <p>The day everything started. I'll never forget how nervous and excited I was! 💕</p>
+                <div class="memory-date">January 15, 2024</div>
+            </div>
+        </div>
+        
+        <!-- Memory Card 2 - EDIT THIS -->
+        <div class="memory-card" onclick="openLightbox('images/photo2.jpg')">
+            <div class="memory-image">
+                <div class="upload-placeholder">
+                    📷
+                    <p>Upload your photo here!</p>
+                </div>
+            </div>
+            <div class="memory-content">
+                <h3>That Amazing Trip</h3>
+                <p>Remember when we got lost but it turned into the best adventure? 🗺️</p>
+                <div class="memory-date">March 22, 2024</div>
+            </div>
+        </div>
+        
+        <!-- Memory Card 3 - EDIT THIS -->
+        <div class="memory-card" onclick="openLightbox('images/photo3.jpg')">
+            <div class="memory-image">
+                <div class="upload-placeholder">
+                    📷
+                    <p>Upload your photo here!</p>
+                </div>
+            </div>
+            <div class="memory-content">
+                <h3>Cozy Night In</h3>
+                <p>Movie nights with you are my favorite. Just us and all the snacks! 🍿</p>
+                <div class="memory-date">May 8, 2024</div>
+            </div>
+        </div>
+        
+        <!-- Memory Card 4 - EDIT THIS -->
+        <div class="memory-card" onclick="openLightbox('images/photo4.jpg')">
+            <div class="memory-image">
+                <div class="upload-placeholder">
+                    📷
+                    <p>Upload your photo here!</p>
+                </div>
+            </div>
+            <div class="memory-content">
+                <h3>Sunset Together</h3>
+                <p>The most beautiful sunset, made even better because I was with you 🌅</p>
+                <div class="memory-date">July 14, 2024</div>
+            </div>
+        </div>
+        
+        <!-- Memory Card 5 - EDIT THIS -->
+        <div class="memory-card" onclick="openLightbox('images/photo5.jpg')">
+            <div class="memory-image">
+                <div class="upload-placeholder">
+                    📷
+                    <p>Upload your photo here!</p>
+                </div>
+            </div>
+            <div class="memory-content">
+                <h3>Silly Moments</h3>
+                <p>I love how we can be completely goofy together! 😂</p>
+                <div class="memory-date">September 3, 2024</div>
+            </div>
+        </div>
+        
+        <!-- Memory Card 6 - EDIT THIS -->
+        <div class="memory-card" onclick="openLightbox('images/photo6.jpg')">
+            <div class="memory-image">
+                <div class="upload-placeholder">
+                    📷
+                    <p>Upload your photo here!</p>
+                </div>
+            </div>
+            <div class="memory-content">
+                <h3>Us Right Now</h3>
+                <p>Every day with you is a new favorite memory 💖</p>
+                <div class="memory-date">Today & Always</div>
+            </div>
+        </div>
+        
+        <!-- ADD MORE CARDS by copying the above structure! -->
+    </div>
+    
+    <!-- Lightbox for viewing photos -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="Memory" id="lightbox-img">
+    </div>
+    
+    <script>
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            // Only open if there's an actual image
+            const card = event.currentTarget;
+            const img = card.querySelector('img');
+            if (img) {
+                lightboxImg.src = imageSrc;
+                lightbox.classList.add('active');
+            }
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why I Love You 💝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #f5576c;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            color: white;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .reveal-btn {
+            padding: 20px 50px;
+            background: white;
+            color: #f5576c;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            margin-bottom: 40px;
+        }
+        
+        .reveal-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .reasons-container {
+            display: none;
+        }
+        
+        .reasons-container.active {
+            display: block;
+        }
+        
+        .reason-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .reason-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .reason-text {
+            color: #333;
+            font-size: 1.3em;
+            line-height: 1.6;
+        }
+        
+        .heart-icon {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        
+        .final-message {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        .final-message.active {
+            animation: popIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .final-message h2 {
+            color: #f5576c;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .final-message p {
+            color: #333;
+            font-size: 1.4em;
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .reason-text {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-btn">🏠 Home</a>
+    
+    <div class="container">
+        <h1>💝 Why I Love You 💝</h1>
+        <p class="intro">There are so many reasons... let me count the ways! ✨</p>
+        
+        <button class="reveal-btn" onclick="revealReasons()" id="revealBtn">
+            Click to Reveal! 💕
+        </button>
+        
+        <div class="reasons-container" id="reasonsContainer">
+            <!-- Reason 1 -->
+            <div class="reason-card" style="animation-delay: 0.1s">
+                <div class="reason-number">1</div>
+                <div class="heart-icon">😊</div>
+                <div class="reason-text">
+                    Your smile lights up my entire day, every single time
+                </div>
+            </div>
+            
+            <!-- Reason 2 -->
+            <div class="reason-card" style="animation-delay: 0.2s">
+                <div class="reason-number">2</div>
+                <div class="heart-icon">😂</div>
+                <div class="reason-text">
+                    You make me laugh like nobody else can
+                </div>
+            </div>
+            
+            <!-- Reason 3 -->
+            <div class="reason-card" style="animation-delay: 0.3s">
+                <div class="reason-number">3</div>
+                <div class="heart-icon">🤗</div>
+                <div class="reason-text">
+                    You always know how to make me feel better when I'm down
+                </div>
+            </div>
+            
+            <!-- Reason 4 -->
+            <div class="reason-card" style="animation-delay: 0.4s">
+                <div class="reason-number">4</div>
+                <div class="heart-icon">💪</div>
+                <div class="reason-text">
+                    You support my dreams and believe in me even when I don't
+                </div>
+            </div>
+            
+            <!-- Reason 5 -->
+            <div class="reason-card" style="animation-delay: 0.5s">
+                <div class="reason-number">5</div>
+                <div class="heart-icon">🎵</div>
+                <div class="reason-text">
+                    We have our own little world of inside jokes and memories
+                </div>
+            </div>
+            
+            <!-- Reason 6 -->
+            <div class="reason-card" style="animation-delay: 0.6s">
+                <div class="reason-number">6</div>
+                <div class="heart-icon">🌟</div>
+                <div class="reason-text">
+                    You make ordinary moments feel extraordinary
+                </div>
+            </div>
+            
+            <!-- Reason 7 -->
+            <div class="reason-card" style="animation-delay: 0.7s">
+                <div class="reason-number">7</div>
+                <div class="heart-icon">❤️</div>
+                <div class="reason-text">
+                    You accept me exactly as I am, flaws and all
+                </div>
+            </div>
+            
+            <!-- Reason 8 -->
+            <div class="reason-card" style="animation-delay: 0.8s">
+                <div class="reason-number">8</div>
+                <div class="heart-icon">🌈</div>
+                <div class="reason-text">
+                    Life is just better when I'm with you
+                </div>
+            </div>
+            
+            <!-- Reason 9 -->
+            <div class="reason-card" style="animation-delay: 0.9s">
+                <div class="reason-number">9</div>
+                <div class="heart-icon">✨</div>
+                <div class="reason-text">
+                    You inspire me to be a better person every day
+                </div>
+            </div>
+            
+            <!-- Reason 10 -->
+            <div class="reason-card" style="animation-delay: 1s">
+                <div class="reason-number">10</div>
+                <div class="heart-icon">💖</div>
+                <div class="reason-text">
+                    You're my best friend and the love of my life
+                </div>
+            </div>
+            
+            <!-- Final Message -->
+            <div class="final-message" id="finalMessage">
+                <h2>And so many more... 💕</h2>
+                <p>
+                    I could write a thousand reasons and it still wouldn't be enough 
+                    to express how much you mean to me. You're my favorite person 
+                    in the whole world, and I'm so grateful for every moment we share together.
+                </p>
+                <p style="margin-top: 30px; font-size: 2em;">
+                    I love you! ❤️
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function revealReasons() {
+            document.getElementById('revealBtn').style.display = 'none';
+            const container = document.getElementById('reasonsContainer');
+            container.classList.add('active');
+            
+            // Show final message after all reasons
+            setTimeout(() => {
+                document.getElementById('finalMessage').classList.add('active');
+            }, 2000);
+            
+            // Create floating hearts
+            createFloatingHearts();
+        }
+        
+        function createFloatingHearts() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = window.innerHeight + 'px';
+                heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+                heart.style.opacity = '0.7';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '-1';
+                heart.style.transition = 'all 4s linear';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.style.top = '-100px';
+                    heart.style.opacity = '0';
+                }, 100);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>

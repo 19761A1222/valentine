@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        h1 {
+            color: #e91e63;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart {
+            font-size: 120px;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+        }
+        
+        .question {
+            font-size: 2em;
+            color: #333;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            position: relative;
+            margin-top: 40px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .btn {
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-yes {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+        }
+        
+        .btn-no {
+            background: linear-gradient(135deg, #bdbdbd, #9e9e9e);
+            color: white;
+            position: absolute;
+        }
+        
+        #celebration {
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .celebration-text {
+            font-size: 2.5em;
+            color: #e91e63;
+            margin: 20px 0;
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .love-message {
+            font-size: 1.3em;
+            color: #555;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .error-message {
+            font-size: 1.2em;
+            color: #e91e63;
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-btn">🏠 Home</a>
+    
+    <div class="container">
+        <div id="question-section">
+            <h1>Hey You! 👋</h1>
+            <div class="heart">💖</div>
+            <div class="question">Will You Be My Valentine?</div>
+            
+            <div class="button-container">
+                <button class="btn btn-yes" onclick="sayYes()">Yes! 💕</button>
+                <button class="btn btn-no" id="noBtn" onmouseover="moveButton()" onclick="clickedNo()">No</button>
+            </div>
+            
+            <div class="error-message" id="errorMsg"></div>
+        </div>
+        
+        <div id="celebration">
+            <div class="celebration-text">🎉 YAAAY! 🎉</div>
+            <div class="heart">❤️</div>
+            <div class="love-message">
+                I knew you'd say yes! ❤️<br>
+                You just made me the happiest person ever!<br>
+                Can't wait to celebrate with you! 💕
+            </div>
+            <div style="margin-top: 30px; font-size: 3em;">
+                😊💖✨🌹💑
+            </div>
+            <a href="index.html" style="display: inline-block; margin-top: 30px; padding: 15px 40px; background: linear-gradient(135deg, #e91e63, #f06292); color: white; text-decoration: none; border-radius: 50px; font-weight: bold;">Explore More 💝</a>
+        </div>
+    </div>
+    
+    <script>
+        let clickCount = 0;
+        const noMessages = [
+            "Oops! Wrong button! 😅",
+            "Try again! That's not the right one! 😜",
+            "Nope! The other button is better! 💕",
+            "You must have clicked by mistake! 😊",
+            "Come on, you know you want to say yes! 💖",
+            "The 'Yes' button is calling your name! 🥰",
+            "Don't be shy! Click 'Yes'! 💗",
+            "I know you want to say yes! 😘",
+            "Just click yes already! 💝"
+        ];
+        
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const container = document.querySelector('.button-container');
+            
+            const containerRect = container.getBoundingClientRect();
+            const maxX = containerRect.width - noBtn.offsetWidth;
+            const maxY = containerRect.height - noBtn.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = noMessages[Math.min(clickCount, noMessages.length - 1)];
+            clickCount++;
+        }
+        
+        function clickedNo() {
+            moveButton();
+        }
+        
+        function sayYes() {
+            document.getElementById('question-section').style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+            createConfetti();
+        }
+        
+        function createConfetti() {
+            const colors = ['#e91e63', '#f06292', '#ff4081', '#ff80ab'];
+            const confettiCount = 50;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '1000';
+                    confetti.style.animation = 'fall ' + (2 + Math.random() * 3) + 's linear';
+                    
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>

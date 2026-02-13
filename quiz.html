@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Quiz 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #764ba2;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .quiz-intro p {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .question-section {
+            display: none;
+        }
+        
+        .question-section.active {
+            display: block;
+        }
+        
+        .question {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        .question-number {
+            color: #764ba2;
+            font-size: 0.8em;
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 20px;
+            background: #f5f5f5;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1em;
+        }
+        
+        .option:hover {
+            background: #ede7f6;
+            border-color: #764ba2;
+            transform: translateX(10px);
+        }
+        
+        .option.selected {
+            background: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .result-section {
+            display: none;
+            text-align: center;
+        }
+        
+        .result-section.active {
+            display: block;
+        }
+        
+        .score-display {
+            font-size: 4em;
+            color: #764ba2;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        
+        .result-message {
+            font-size: 1.4em;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .result-emoji {
+            font-size: 100px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .question {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-btn">🏠 Home</a>
+    
+    <div class="container">
+        <h1>💖 How Well Do You Know Us? 💖</h1>
+        
+        <div class="quiz-intro" id="intro">
+            <p>Let's see how well you remember our special moments together! 🎯</p>
+            <p style="margin-top: 20px;">Answer these questions about our relationship!</p>
+            <button class="btn btn-primary" onclick="startQuiz()" style="margin-top: 30px;">Start Quiz! 🎮</button>
+        </div>
+        
+        <!-- Question 1 -->
+        <div class="question-section" id="q1">
+            <div class="question-number">Question 1 of 5</div>
+            <div class="question">Where was our first date?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q1', 'a')">At a coffee shop ☕</div>
+                <div class="option" onclick="selectOption(this, 'q1', 'b')">At the movies 🎬</div>
+                <div class="option" onclick="selectOption(this, 'q1', 'c')">At a restaurant 🍝</div>
+                <div class="option" onclick="selectOption(this, 'q1', 'd')">At the park 🌳</div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="nextQuestion(2)" id="next1" disabled>Next →</button>
+            </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="question-section" id="q2">
+            <div class="question-number">Question 2 of 5</div>
+            <div class="question">What's my favorite thing to do with you?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q2', 'a')">Watch movies together 📺</div>
+                <div class="option" onclick="selectOption(this, 'q2', 'b')">Go on adventures 🗺️</div>
+                <div class="option" onclick="selectOption(this, 'q2', 'c')">Just talk for hours 💬</div>
+                <div class="option" onclick="selectOption(this, 'q2', 'd')">Everything! All of it! 💕</div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="nextQuestion(3)" id="next2" disabled>Next →</button>
+            </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="question-section" id="q3">
+            <div class="question-number">Question 3 of 5</div>
+            <div class="question">What was the first thing I noticed about you?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q3', 'a')">Your smile 😊</div>
+                <div class="option" onclick="selectOption(this, 'q3', 'b')">Your eyes 👀</div>
+                <div class="option" onclick="selectOption(this, 'q3', 'c')">Your laugh 😂</div>
+                <div class="option" onclick="selectOption(this, 'q3', 'd')">Your kindness ✨</div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="nextQuestion(4)" id="next3" disabled>Next →</button>
+            </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="question-section" id="q4">
+            <div class="question-number">Question 4 of 5</div>
+            <div class="question">What's our favorite song?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q4', 'a')">The one we danced to 💃</div>
+                <div class="option" onclick="selectOption(this, 'q4', 'b')">That song from the car ride 🚗</div>
+                <div class="option" onclick="selectOption(this, 'q4', 'c')">Our special song 🎵</div>
+                <div class="option" onclick="selectOption(this, 'q4', 'd')">We have too many! 🎶</div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="nextQuestion(5)" id="next4" disabled>Next →</button>
+            </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="question-section" id="q5">
+            <div class="question-number">Question 5 of 5</div>
+            <div class="question">What's the best thing about our relationship?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 'q5', 'a')">We make each other laugh 😂</div>
+                <div class="option" onclick="selectOption(this, 'q5', 'b')">We're best friends 👫</div>
+                <div class="option" onclick="selectOption(this, 'q5', 'c')">We can be ourselves 💯</div>
+                <div class="option" onclick="selectOption(this, 'q5', 'd')">Everything about it! 💖</div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="showResults()" id="next5" disabled>See Results! 🎉</button>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div class="result-section" id="results">
+            <div class="result-emoji" id="resultEmoji">🎉</div>
+            <div class="score-display" id="scoreDisplay">5/5</div>
+            <div class="result-message" id="resultMessage"></div>
+            <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top: 30px;">Try Again! 🔄</button>
+        </div>
+    </div>
+    
+    <script>
+        let answers = {};
+        // Change these to your correct answers!
+        const correctAnswers = {
+            q1: 'c',  // Change to your correct answer!
+            q2: 'd',  // Hint: This one is always correct! 😉
+            q3: 'a',  // Change to your correct answer!
+            q4: 'c',  // Change to your correct answer!
+            q5: 'd'   // This one is also always correct! 💕
+        };
+        
+        function startQuiz() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('q1').classList.add('active');
+        }
+        
+        function selectOption(element, question, answer) {
+            // Remove selected class from all options in this question
+            const options = element.parentElement.children;
+            for (let option of options) {
+                option.classList.remove('selected');
+            }
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Save answer
+            answers[question] = answer;
+            
+            // Enable next button
+            const nextBtn = document.getElementById('next' + question.substring(1));
+            nextBtn.disabled = false;
+        }
+        
+        function nextQuestion(questionNum) {
+            // Hide current question
+            const current = document.querySelector('.question-section.active');
+            current.classList.remove('active');
+            
+            // Show next question
+            document.getElementById('q' + questionNum).classList.add('active');
+        }
+        
+        function showResults() {
+            // Calculate score
+            let score = 0;
+            for (let question in correctAnswers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                }
+            }
+            
+            // Hide last question
+            document.getElementById('q5').classList.remove('active');
+            
+            // Show results
+            const results = document.getElementById('results');
+            results.classList.add('active');
+            
+            document.getElementById('scoreDisplay').textContent = score + '/5';
+            
+            // Custom messages based on score
+            const emoji = document.getElementById('resultEmoji');
+            const message = document.getElementById('resultMessage');
+            
+            if (score === 5) {
+                emoji.textContent = '🏆';
+                message.innerHTML = 'PERFECT SCORE!<br>You know us so well! You\'re amazing! 💖';
+            } else if (score >= 3) {
+                emoji.textContent = '⭐';
+                message.innerHTML = 'Great job!<br>You know our story pretty well! 💕';
+            } else {
+                emoji.textContent = '💕';
+                message.innerHTML = 'That\'s okay!<br>We\'ll make more memories together! 😊';
+            }
+        }
+        
+        function resetQuiz() {
+            answers = {};
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('intro').style.display = 'block';
+            
+            // Reset all options
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Disable all next buttons
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('next' + i).disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>
